@@ -2,12 +2,22 @@
 #include <iostream>
 using namespace std;
 
-void hello()
+int pro(int a)
 {
-    cout <<"hello world";
+    if(a%2==0)
+    {
+        cout<<"even";
+    }
+    else{
+        cout<<"odd";
+    }
+    return 0;
 }
 int main()
 {
-    hello();
-    return 0;
+    int a;
+    cout<<"enter the value number:";
+    cin>>a;
+    pro(a);
+
 }

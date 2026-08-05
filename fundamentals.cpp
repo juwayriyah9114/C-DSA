@@ -3,29 +3,32 @@
 #include <climits>
    
 using namespace std;
-int maxprofit(int *prices,int n)
+int height(int *occu,int n)
 {
-   int bestbuy[100000];
-   bestbuy[0]=INT_MAX;
+   int lmax[1000];
+   int rmax[1000];
+   lmax[0]=INT_MIN;
+   rmax[n-1]=INT_MIN;
    for(int i=1;i<n;i++)
    {
-      bestbuy[i]=min(bestbuy[i-1],prices[i-1]);
-      
+      lmax[i]=max(lmax[i-1],occu[i-1]);
    }
-   int maxprofit=0;
-   for(int i=0;i<n;i++)
+   for(int i=1;i<n;i++)
    {
-      int currentprofit=prices[i]-bestbuy[i];
-      maxprofit=max(maxprofit,currentprofit);
+      rmax[i]=max(rmax[i-1],occu[n-i]);
    }
-   cout<<maxprofit<<endl;
+   int area=0;
+   for(int i=1;i<n;i++)
+   {
+      area=area+min(lmax[i],rmax[i])-occu[i];
+   }
+   return area;
 }
-
 int main()
 {
-   int prices[6]={7,1,5,3,6,4};
-   int n=sizeof(prices)/sizeof(int);
+   int occu[7]={4,2,0,6,3,2,5};
+   int n=sizeof(occu)/sizeof(int);
 
-   maxprofit(prices,n);
-   return 0;
+   int area=height(occu,n);
+   cout<<area<<endl;
 }

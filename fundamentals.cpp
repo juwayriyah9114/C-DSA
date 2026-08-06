@@ -3,36 +3,28 @@
 #include <climits>
    
 using namespace std;
-int height(int *occu,int n)
+int bubble_sort(int *arr,int n)
 {
-   int lmax[1000];
-   int rmax[1000];
-   lmax[0]=occu[0];
-   rmax[n-1]=occu[n-1];
-   for(int i=1;i<n;i++)
+   int i,j;
+   for(i=0;i<n-1;i++)
    {
-      lmax[i]=max(lmax[i-1],occu[i-1]);
-   }
-   for(int i=n-2;i>=0;i--)
-   {
-      rmax[i]=max(rmax[i+1],occu[i+1]);
-   }
-   int area=0;
-   for(int i=0;i<n;i++)
-   {
-      int currw=min(lmax[i],rmax[i])-occu[i];
-      if(currw>0)
+      for(j=0;j<n-i-1;j++)
       {
-         area+=currw;
+         if(arr[j]>arr[j+1])
+         {
+            swap(arr[j],arr[j+1]);
+         }
       }
    }
-   return area;
+   for(i=0;i<n;i++)
+   {
+      cout<<arr[i]<<" ";
+   }
 }
 int main()
 {
-   int occu[7]={4,2,0,6,3,2,5};
-   int n=sizeof(occu)/sizeof(int);
-
-   int area=height(occu,n);
-   cout<<area<<endl;
+   int sorted;
+   int arr[5]={5,4,1,2,3};
+   bubble_sort(arr,5);
+   
 }

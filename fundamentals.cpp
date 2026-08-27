@@ -1,30 +1,27 @@
-
 #include <iostream>
-#include <climits>
-   
+#include <cstring>
 using namespace std;
-int bubble_sort(int *arr,int n)
+void convert(char word[],int n)
 {
-   int i,j;
-   for(i=0;i<n-1;i++)
+   for(int i=0;i<n;i++)
    {
-      for(j=0;j<n-i-1;j++)
+      char ch=word[i];
+      if(ch>='A' && ch<='Z')
       {
-         if(arr[j]>arr[j+1])
-         {
-            swap(arr[j],arr[j+1]);
-         }
+         continue;
+      }
+      else
+      {
+         word[i]=ch-'a'+'A';
       }
    }
-   for(i=0;i<n;i++)
-   {
-      cout<<arr[i]<<" ";
-   }
+   
 }
 int main()
 {
-   int sorted;
-   int arr[5]={5,4,1,2,3};
-   bubble_sort(arr,5);
-   
+   char word[]="ApPle";
+   convert(word, strlen(word));
+   cout<<word;
+   return 0;
+
 }

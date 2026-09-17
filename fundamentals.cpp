@@ -1,10 +1,10 @@
 #include <iostream>
-#include <cstring>
+
 using namespace std;
 int main()
 {
    int size;
-   cout << "Enter the size of the string: ";
+   cout << "Enter the size of the array: ";
    cin >> size;
    int *arr=new int[size];
    int x=1;
@@ -15,5 +15,6 @@ int main()
       x++;
 
    }
+   delete[] arr;
 
 }

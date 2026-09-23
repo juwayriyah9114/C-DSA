@@ -1,20 +1,20 @@
 #include <iostream>
+#include<vector>
 
 using namespace std;
+
 int main()
 {
-   int size;
-   cout << "Enter the size of the array: ";
-   cin >> size;
-   int *arr=new int[size];
-   int x=1;
-   for(int i=0;i<size;i++)
+   int n=7,i=2,val=0;
+   int c=(n<<i);
+   printf("The value at 2nd bit  is %d\n",c);
+   int d=n|c;
+   if(d==val)
    {
-      arr[i]=x;
-     cout<<(arr[i])<<" ";
-      x++;
-
+      printf("The bit at position 2nd is %d\n",d);
    }
-   delete[] arr;
+   else{
+      printf("The bit at position 2nd is %d\n",~d);
+   }
 
 }

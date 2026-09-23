@@ -1,20 +1,45 @@
 #include <iostream>
 #include<vector>
+#include<string>
 
 using namespace std;
 
-int main()
+class student{
+   string name;
+   float cgpa;
+public:
+void per()
 {
-   int n=7,i=2,val=0;
-   int c=(n<<i);
-   printf("The value at 2nd bit  is %d\n",c);
-   int d=n|c;
-   if(d==val)
+   cout<<cgpa*10<<"%\n";
+}
+
+//setters
+void setName(string newname)
+{
+   name=newname;
+}
+void setcgpa(float newcgpa)
+{
+   cgpa=newcgpa;
+}
+//getters
+string getName()
+{
+      return name;
+ }
+   float getCgpa()
    {
-      printf("The bit at position 2nd is %d\n",d);
-   }
-   else{
-      printf("The bit at position 2nd is %d\n",~d);
+      return cgpa;
    }
 
+};
+
+int main()
+{
+   student s1;
+   s1.setName("riya");
+   s1.setcgpa(9.5);
+   s1.getName();
+   s1.getCgpa();
+   return 0;
 }

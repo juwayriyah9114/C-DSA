@@ -4,42 +4,36 @@
 
 using namespace std;
 
-class student{
-   string name;
-   float cgpa;
+class user{
+private:
+   int id;
+   string password;
 public:
-void per()
+   string username;
+user(int id)
 {
-   cout<<cgpa*10<<"%\n";
+   this->id = id;
+}
+//setters
+void setpassword(string password)
+{
+   this->password = password;
 }
 
-//setters
-void setName(string newname)
-{
-   name=newname;
-}
-void setcgpa(float newcgpa)
-{
-   cgpa=newcgpa;
-}
 //getters
-string getName()
+string getPassword()
 {
-      return name;
+      return password;
  }
-   float getCgpa()
-   {
-      return cgpa;
-   }
+   
 
 };
 
 int main()
 {
-   student s1;
-   s1.setName("riya");
-   s1.setcgpa(9.5);
-   s1.getName();
-   s1.getCgpa();
+   user u1(007);
+   u1.username = "juwayriyah";
+   u1.setpassword("password123");
+   cout << u1.getPassword() << endl;
    return 0;
 }

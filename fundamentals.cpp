@@ -1,39 +1,26 @@
-#include <iostream>
-#include<vector>
+#include<iostream>
 #include<string>
-
 using namespace std;
-
-class user{
-private:
-   int id;
-   string password;
-public:
-   string username;
-user(int id)
-{
-   this->id = id;
-}
-//setters
-void setpassword(string password)
-{
-   this->password = password;
-}
-
-//getters
-string getPassword()
-{
-      return password;
- }
+class complex{
+   int real;
+   int ima;
+   public:
+   complex(int r,int i)
+   {
+      this->real=r;
+      this->ima=i;
+   }
+   void show()
+   {
+      cout<<real<<"+"<<ima<<"i\n";
+   }
    
 
 };
-
 int main()
 {
-   user u1(007);
-   u1.username = "juwayriyah";
-   u1.setpassword("password123");
-   cout << u1.getPassword() << endl;
+   complex c1(85 , 7);
+   complex c2(5 , 6);
+   c1.show();
    return 0;
 }

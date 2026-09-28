@@ -1,19 +1,30 @@
 #include<iostream>
 #include<string>
 using namespace std;
-class Shape{
+class a{
    public:
-   virtual void shape()=0;
+   a()
+   {
+      cout<<"constructor a"<<endl;
+   }
+   ~a()
+   {
+      cout<<"destructor a"<<endl;
+   }
 };
-class circle:public Shape{
+class b:public a{
    public:
-   void shape(){
-      cout<<"circle"<<endl;
+   b()
+   {
+      cout<<"constructor b"<<endl;
+   }
+   ~b()
+   {
+      cout<<"destructor b"<<endl;
    }
 };
 int main()
 {
-   circle c;
-   c.shape();
+   b obj;
    return 0;
 }

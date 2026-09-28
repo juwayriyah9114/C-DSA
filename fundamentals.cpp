@@ -1,26 +1,19 @@
 #include<iostream>
 #include<string>
 using namespace std;
-class complex{
-   int real;
-   int ima;
+class Shape{
    public:
-   complex(int r,int i)
-   {
-      this->real=r;
-      this->ima=i;
+   virtual void shape()=0;
+};
+class circle:public Shape{
+   public:
+   void shape(){
+      cout<<"circle"<<endl;
    }
-   void show()
-   {
-      cout<<real<<"+"<<ima<<"i\n";
-   }
-   
-
 };
 int main()
 {
-   complex c1(85 , 7);
-   complex c2(5 , 6);
-   c1.show();
+   circle c;
+   c.shape();
    return 0;
 }

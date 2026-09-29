@@ -1,30 +1,34 @@
 #include<iostream>
-#include<string>
+
 using namespace std;
-class a{
-   public:
-   a()
+int sum(int n)
+{
+   while(n>0)
    {
-      cout<<"constructor a"<<endl;
+      return n+ sum(n-1);
+      
    }
-   ~a()
+}
+int fibonacci(int n)
+{
+   if(n==0)
    {
-      cout<<"destructor a"<<endl;
+      return 0;
    }
-};
-class b:public a{
-   public:
-   b()
+   else if(n==1)
    {
-      cout<<"constructor b"<<endl;
+      return 1;
    }
-   ~b()
+   else
    {
-      cout<<"destructor b"<<endl;
+      return fibonacci(n-1)+fibonacci(n-2);
    }
-};
+}
 int main()
 {
-   b obj;
-   return 0;
+  int res=  sum(5);
+  cout<<res<<endl;
+  int fib_res = fibonacci(5);
+  cout<<fib_res<<endl;
+  return 0;
 }

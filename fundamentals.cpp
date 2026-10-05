@@ -1,34 +1,32 @@
 #include<iostream>
-
+#include<string>
 using namespace std;
-int sum(int n)
+void strdup(string str,string ans,int i,int map[26])
 {
-   while(n>0)
+   if(i==str.length())
    {
-      return n+ sum(n-1);
-      
+      cout<<ans<<endl;
+      return;
    }
+   
+      int mapindex=str[i]-'a';
+      if(map[mapindex]==true)
+      {
+         strdup(str,ans,i+1,map);
+      }
+      else
+      {
+         ans=ans+str[i];
+         map[mapindex]=true;
+         strdup(str,ans,i+1,map);
+      }
 }
-int fibonacci(int n)
-{
-   if(n==0)
-   {
-      return 0;
-   }
-   else if(n==1)
-   {
-      return 1;
-   }
-   else
-   {
-      return fibonacci(n-1)+fibonacci(n-2);
-   }
-}
+  
+
 int main()
 {
-  int res=  sum(5);
-  cout<<res<<endl;
-  int fib_res = fibonacci(5);
-  cout<<fib_res<<endl;
-  return 0;
+   string str="apnacollege";
+   string ans="";
+   int map[26]={false};
+   strdup(str,ans,0,map);
 }

@@ -1,32 +1,28 @@
 #include<iostream>
 #include<string>
 using namespace std;
-void strdup(string str,string ans,int i,int map[26])
+void bi(int n,int lastcall,string ans)
 {
-   if(i==str.length())
+   if(n==0)
    {
       cout<<ans<<endl;
       return;
    }
-   
-      int mapindex=str[i]-'a';
-      if(map[mapindex]==true)
-      {
-         strdup(str,ans,i+1,map);
-      }
-      else
-      {
-         ans=ans+str[i];
-         map[mapindex]=true;
-         strdup(str,ans,i+1,map);
-      }
+   if(lastcall!=1)
+   {
+      bi(n-1,0,ans+"0");
+      bi(n-1,1,ans+"1");
+   }
+   else
+   {
+      bi(n-1,0,ans+"0");
+   }
 }
   
 
 int main()
 {
-   string str="apnacollege";
+   int n=3;
    string ans="";
-   int map[26]={false};
-   strdup(str,ans,0,map);
+   bi(n,0,ans);
 }

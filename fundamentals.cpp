@@ -1,28 +1,71 @@
 #include<iostream>
-#include<string>
+#include<vector>
 using namespace std;
-void bi(int n,int lastcall,string ans)
+
+void merge(int arr[],int s,int mid,int e)
 {
-   if(n==0)
+   vector<int> temp;
+   int i=s;
+   int j=mid+1;
+   while(i<=mid && j<=e)
    {
-      cout<<ans<<endl;
-      return;
+      if(arr[i]<arr[j])
+      {
+         temp.push_back(arr[i++]);
+         i++;
+      }
+      else
+      {
+         temp.push_back(arr[j++]);
+         j++;
+      }
    }
-   if(lastcall!=1)
+   if(i<=mid)
    {
-      bi(n-1,0,ans+"0");
-      bi(n-1,1,ans+"1");
+      
+         temp.push_back(arr[i++]);
+  }
+   if(j<=e)
+   {
+     
+         temp.push_back(arr[j++]);
+     
+   }
+   for(int ide=s,x=0;ide<=e;ide++)
+   {
+      arr[ide]=temp[x++];
+   }
+
+}
+void printarr(int arr[],int n)
+{
+   for(int i=0;i<n;i++)
+   {
+      cout<<arr[i]<<" ";
+   }
+}
+void mergesort(int arr[],int s,int e)
+{
+   if(s>=e)
+   {
+      return;
    }
    else
    {
-      bi(n-1,0,ans+"0");
+      int mid=s+(e-s)/2;
+      mergesort(arr,s,mid);
+      mergesort(arr,mid+1,e);
+
+      merge(arr,s,mid,e);
    }
 }
-  
-
 int main()
 {
-   int n=3;
-   string ans="";
-   bi(n,0,ans);
+   int arr[6]={9,8,7,5,6,4};
+   int n=6;
+
+   mergesort(arr,0,n-1);
+   printarr(arr,n);
+   
+
 }

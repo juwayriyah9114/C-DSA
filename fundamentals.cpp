@@ -1,71 +1,49 @@
 #include<iostream>
-#include<vector>
 using namespace std;
-
-void merge(int arr[],int s,int mid,int e)
+class Node
 {
-   vector<int> temp;
-   int i=s;
-   int j=mid+1;
-   while(i<=mid && j<=e)
+   public:
+   int data;
+   Node *next;
+
+   Node(int val)
    {
-      if(arr[i]<arr[j])
+      data=val;
+      next=NULL;
+   }
+};
+
+class List{
+   Node *head;
+   Node *tail;
+   public:
+      List()
       {
-         temp.push_back(arr[i++]);
-         i++;
+         head=NULL;
+         tail=NULL;
       }
-      else
+      void push_front(int val)
       {
-         temp.push_back(arr[j++]);
-         j++;
+         Node * newNode=new Node(val);
+         if(head==NULL)
+         {
+            head=newNode;
+            tail=newNode;
+         }
+         else
+         {
+            newNode->next= head;
+            head=newNode;
+         }
       }
-   }
-   if(i<=mid)
-   {
-      
-         temp.push_back(arr[i++]);
-  }
-   if(j<=e)
-   {
-     
-         temp.push_back(arr[j++]);
-     
-   }
-   for(int ide=s,x=0;ide<=e;ide++)
-   {
-      arr[ide]=temp[x++];
-   }
+};
 
-}
-void printarr(int arr[],int n)
-{
-   for(int i=0;i<n;i++)
-   {
-      cout<<arr[i]<<" ";
-   }
-}
-void mergesort(int arr[],int s,int e)
-{
-   if(s>=e)
-   {
-      return;
-   }
-   else
-   {
-      int mid=s+(e-s)/2;
-      mergesort(arr,s,mid);
-      mergesort(arr,mid+1,e);
-
-      merge(arr,s,mid,e);
-   }
-}
 int main()
 {
-   int arr[6]={9,8,7,5,6,4};
-   int n=6;
+   List l1;
 
-   mergesort(arr,0,n-1);
-   printarr(arr,n);
-   
-
+   l1.push_front(3);
+   l1.push_front(2);
+   l1.push_front(1);
+   return 0;
 }

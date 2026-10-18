@@ -115,6 +115,68 @@ class List{
          tail=temp;
         
       }
+      int iterative_search(int key)
+      {
+         Node *temp=head;
+         int i=0;
+        while(temp!=NULL)
+         {
+            if(temp->data==key)
+            {
+               return i;
+               temp=temp->next;
+               i++;
+            }
+            temp=temp->next;
+            i++;
+         }
+         return -1;
+
+
+      }
+      void reverse()
+      {
+         Node *prev=NULL;
+         Node *curr=head;
+         Node *next=NULL;
+
+         while(curr!=NULL)
+         {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+         }
+         head=prev;
+
+      }
+
+      int size()
+      {
+         Node *temp=head;
+         int sz=0;
+         
+         while(temp!=NULL)
+         {
+            //sz++;
+            temp=temp->next;
+            sz++;
+         }
+         return sz;
+         
+          
+        
+      }
+      void remove_nth(int n)
+      {
+         int si=size();
+         Node *pre=head;
+         for(int i=1;i<si-n;i++)
+         {
+            pre=pre->next;
+         }
+         pre->next=pre->next->next;
+      }
 
 };
 
@@ -129,7 +191,10 @@ int main()
    //l1.print();
    l1.insert(5,2);
    l1.print();
-   l1.pop_back();
+   //l1.pop_back();
+  // l1.reverse();
+  l1.remove_nth(3);
    l1.print();
+  // cout<<l1.iterative_search(5)<<endl;
    return 0;
 }

@@ -12,14 +12,14 @@ class Node
       next=NULL;
    }
 
-   // ~Node()
-   // {
-   //    if(next!=NULL)
-   //    {
-   //       delete next;
-   //       next=NULL;
-   //    }
-   // }
+    ~Node()
+    {
+       if(next!=NULL)
+       {
+          delete next;
+          next=NULL;
+       }
+    }
 };
 
 class List{
@@ -31,14 +31,14 @@ class List{
          head=NULL;
          tail=NULL;
       }
-      // ~List()
-      // {
-      //    if(head!=NULL)
-      //    {
-      //       delete head;
-      //       head=NULL;
-      //    }
-      // }
+       ~List()
+       {
+       if(head!=NULL)
+          {
+             delete head;
+             head=NULL;
+          }
+       }
       void pop_front()
       {
          Node* temp=head;

@@ -1,200 +1,39 @@
 #include<iostream>
+#include<vector>
+
 using namespace std;
-class Node
-{
+
+class node{
    public:
    int data;
-   Node *next;
+      node* left;
+      node* right;
 
-   Node(int val)
-   {
-      data=val;
-      next=NULL;
-   }
-
-    ~Node()
-    {
-       if(next!=NULL)
-       {
-          delete next;
-          next=NULL;
-       }
-    }
+      node(int d){
+         data=d;
+         left=NULL;
+         right=NULL;
+      }
 };
 
-class List{
-   Node *head;
-   Node *tail;
-   public:
-      List()
-      {
-         head=NULL;
-         tail=NULL;
-      }
-       ~List()
-       {
-       if(head!=NULL)
-          {
-             delete head;
-             head=NULL;
-          }
-       }
-      void pop_front()
-      {
-         Node* temp=head;
-         head=head->next;
-         delete temp;
-      }
-
-      void push_front(int val)
-      {
-         Node * newNode=new Node(val);
-         if(head==NULL)
-         {
-            head=newNode;
-            tail=newNode;
-         }
-         else
-         {
-            newNode->next= head;
-            head=newNode;
-         }
-      }
-      void push_back(int val)
-      {
-         Node*newNode=new Node(val);
-         if(head==NULL)
-         {
-            head=newNode;
-            tail=newNode;
-         }
-         else
-         {
-            tail->next=newNode;
-            tail=newNode;
-         }
-      }
-      void print()
-      {
-         Node*temp=head;
-         while(temp!=NULL)
-         {
-            cout<<temp->data<<" ";
-            temp=temp->next;
-         }
-         cout<<endl;
-      }
-
-      void insert(int val,int pos)
-      {
-         Node *temp=head;
-         for(int i=1;i<=pos;i++)
-         {
-            temp=temp->next;
-         }
-         Node *newnode= new Node(val);
-         Node *temp1=head; 
-         for(int i=1;i<pos;i++)
-         {
-            temp1=temp1->next;
-         }
-         temp1->next=newnode;
-         newnode->next=temp;
-
-      }
-
-      void pop_back()
-      {
-         Node *temp=head;
-         while(temp->next->next!=NULL)
-         {
-            temp=temp->next;
-         }
-         temp->next=NULL;
-         delete tail;
-         tail=temp;
-        
-      }
-      int iterative_search(int key)
-      {
-         Node *temp=head;
-         int i=0;
-        while(temp!=NULL)
-         {
-            if(temp->data==key)
-            {
-               return i;
-               temp=temp->next;
-               i++;
-            }
-            temp=temp->next;
-            i++;
-         }
-         return -1;
-
-
-      }
-      void reverse()
-      {
-         Node *prev=NULL;
-         Node *curr=head;
-         Node *next=NULL;
-
-         while(curr!=NULL)
-         {
-            next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
-         }
-         head=prev;
-
-      }
-
-      int size()
-      {
-         Node *temp=head;
-         int sz=0;
-         
-         while(temp!=NULL)
-         {
-            //sz++;
-            temp=temp->next;
-            sz++;
-         }
-         return sz;
-         
-          
-        
-      }
-      void remove_nth(int n)
-      {
-         int si=size();
-         Node *pre=head;
-         for(int i=1;i<si-n;i++)
-         {
-            pre=pre->next;
-         }
-         pre->next=pre->next->next;
-      }
-
-};
-
-int main()
+static int idx=-1;
+node *buildtree(vector<int>nodes)
 {
-   List l1;
+   idx++;
+   if(nodes[idx]==-1){
+      return NULL;
+   }
+   
+   node* currnode=new node(nodes[idx]);
+   currnode->left=buildtree(nodes);
+   currnode->right=buildtree(nodes);
 
-   l1.push_front(3);
-   l1.push_front(2);
-   l1.push_front(1);
-   l1.push_back(4);
-   //l1.print();
-   l1.insert(5,2);
-   l1.print();
-   //l1.pop_back();
-  // l1.reverse();
-  l1.remove_nth(3);
-   l1.print();
-  // cout<<l1.iterative_search(5)<<endl;
+   return currnode;
+}
+
+int main(){
+   vector<int> nodes={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+   node* root=buildtree(nodes);
+   cout<<"Root node is: "<<root->data<<endl;
    return 0;
 }

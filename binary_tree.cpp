@@ -31,9 +31,20 @@ node *buildtree(vector<int>nodes)
    return currnode;
 }
 
+void preorder_traversal(node* root){
+   if(root==NULL){
+      return;
+   }
+   cout<<root->data<<" ";
+   preorder_traversal(root->left);
+   preorder_traversal(root->right);
+}
 int main(){
    vector<int> nodes={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
    node* root=buildtree(nodes);
    cout<<"Root node is: "<<root->data<<endl;
+   cout<<"Preorder traversal: "<<endl;
+   preorder_traversal(root);
    return 0;
+
 }
